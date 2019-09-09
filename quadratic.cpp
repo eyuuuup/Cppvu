@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+int discriminantCalc(int a, int b, int c){
+    return (b * b) - (4*a*c);
+}
+
 int main() {
 
     int a;
@@ -27,8 +31,4 @@ int main() {
 
 
     
-}
-
-int discriminantCalc(int a, int b, int c){
-    return (b * b) - (4*a*c);
 }
