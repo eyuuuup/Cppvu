@@ -4,10 +4,12 @@
 using namespace std;
 
 double discriminantCalc(double a, double b, double c) {
+
     return (b * b) - (4*a*c);
 }
 
 vector<double> solutionCalc (double a, double b, double c, bool two) {
+    
     if (two) {
         double positive = (-b + sqrt( (b*b) - (4*a*c) )) / (2 * a);
         double negative = (-b - sqrt( (b*b) - (4*a*c) )) / (2 * a);
@@ -21,6 +23,7 @@ vector<double> solutionCalc (double a, double b, double c, bool two) {
 }
 
 vector<double> checkError() {
+
         double a;
         double b;
         double c;
@@ -43,7 +46,8 @@ vector<double> checkError() {
 
 int main() {
 
-    try{
+    try {
+        
         double a;
         double b;
         double c;
