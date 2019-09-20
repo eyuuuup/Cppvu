@@ -8,36 +8,29 @@ int sortVector(vector<int> elements) {
         throw runtime_error("error: no second smallest");
     }
 
-    for (int i = 0; i < elements.size() - 1; i++) {
-        int min = i;
-        for (int j = i + 1; j < elements.size(); j++) {
-            if (elements.at(j) < elements.at(min)) {
-                min = j;
-            }
+    int pointerSmaller = elements.at(0);
+    int pointerSmallest = elements.at(0);
+
+    for(int i = 0; i < elements.size(); i++){
+        
+        if(elements.at(i) < pointerSmallest) {
+            pointerSmaller = pointerSmallest;
+            pointerSmallest = elements.at(i);
         }
 
-        int temp = elements.at(i);
-        elements.at(i) = elements.at(min);
-        elements.at(min) = temp;
-    }
-
-    int smallest = elements.at(0);
-    int secondSmallest;
-    int hit;
-
-    for (int i = 0; i < elements.size(); i++) {
-        if (elements.at(i) != smallest) {
-            secondSmallest = elements.at(i);
-            hit++;
-            break;
+        if(elements.at(i) > pointerSmaller && pointerSmaller == pointerSmallest) {
+            pointerSmaller = elements.at(i);
+        } else if (elements.at(i) < pointerSmaller && pointerSmaller > pointerSmallest) {
+            pointerSmaller = elements.at(i);
         }
+
     }
 
-    if (hit == 0) {
+    if(pointerSmallest == pointerSmaller) {
         throw runtime_error("error: no second smallest");
     }
 
-    return secondSmallest;
+    return pointerSmaller;
 }
 
 int main() {
