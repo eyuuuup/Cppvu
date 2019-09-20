@@ -3,17 +3,21 @@
 using namespace std;
 
 vector<double> multiplication(vector< vector<double> > table, vector<double> coef) {
-    vector<double> result(3);
-    result.at(0) = table.at(0).at(0) * coef.at(0) + table.at(0).at(1) * coef.at(1) + table.at(0).at(2) * coef.at(2);
-    result.at(1) = table.at(1).at(0) * coef.at(0) + table.at(1).at(1) * coef.at(1) + table.at(1).at(2) * coef.at(2);
-    result.at(2) = table.at(2).at(0) * coef.at(0) + table.at(2).at(1) * coef.at(1) + table.at(2).at(2) * coef.at(2);
+    vector<double> result(3, 0);
+    for(int i = 0; i < result.size(); i++){
+        for(int j = 0; j < result.size(); j++){
+            result.at(i) += table.at(i).at(j) * coef.at(j);
+        }
+    }
+
+
     return result;
 }
 
 
 int main() {
 
-    vector< vector<double> > table(3, vector<double>(2));
+    vector< vector<double> > table(3, vector<double>(3));
 
     double element = 1.0;
     for(int i = 0; i < table.size(); i++){
