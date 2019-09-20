@@ -13,11 +13,15 @@ vector<double> multiplication(vector< vector<double> > table, vector<double> coe
 
 int main() {
 
-    vector< vector<double> > table = {
-        {1.0, 2.0, 3.0},
-        {4.0, 5.0, 6.0},
-        {7.0, 8.0, 9.0}
-    };
+    vector< vector<double> > table(3, vector<double>(2));
+
+    double element = 1.0;
+    for(int i = 0; i < table.size(); i++){
+        for(int j = 0; j < table.at(i).size(); j++){
+            table.at(i).at(j) = element;
+            element++;
+        }
+    }
     vector<double> coef(3);
     vector<double> result(3);
 

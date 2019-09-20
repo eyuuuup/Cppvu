@@ -22,26 +22,21 @@ vector<double> solutionCalc (double a, double b, double c, bool two) {
     }
 }
 
-vector<double> checkError() {
+double checkError(bool isA) {
 
-        double a;
-        double b;
-        double c;
+        double element;
         
-        cin >> a;
-        cin >> b;
-        cin >> c;
+        cin >> element;
 
         if (cin.fail()) {
             throw runtime_error("An error occurred: Malformed user input");
         }
 
-         if (a == 0) {
+         if (element == 0 && isA) {
             throw runtime_error("An error occurred: a must not be zero");
         }
 
-        vector<double> elements = {a, b, c};
-        return elements;
+        return element;
 }
 
 int main() {
@@ -54,15 +49,13 @@ int main() {
         double discriminant;
 
         cout << "Please enter the values of a, b, and c: " << endl;
-        
-        vector<double> elements(3);
-        elements = checkError();
-        a = elements.at(0);
-        b = elements.at(1);
-        c = elements.at(2);
+     
+        a = checkError(true);
+        b = checkError(false);
+        c = checkError(false);
 
 
-        discriminant = discriminantCalc(a, b ,c);
+        discriminant = discriminantCalc(a, b ,c); 
 
         if (discriminant > 0) {
             cout << "There are 2 solutions." << endl;
