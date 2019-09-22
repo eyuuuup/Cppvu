@@ -57,7 +57,10 @@ int main() {
 
     cout << "The second smallest number is: " << result;
 
+    return 0;
+
     } catch (runtime_error excpt) {
         cout << excpt.what() << endl;
-    }
+    
+
 }
