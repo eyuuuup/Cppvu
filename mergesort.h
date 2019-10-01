@@ -5,7 +5,7 @@ using namespace std;
 #ifndef MERGESORT_H
 #define MERGESORT_H
 
-int hit = 0;
+bool hit = false;
 
 template <typename T> void merge(const vector<T>& unsorted, int start, int mid, int end, vector<T>& sorted)  {
     //cout <<"hit" << endl;
@@ -38,7 +38,7 @@ template <typename T> void merge(const vector<T>& unsorted, int start, int mid, 
          k++;
     }
 
-    while( i < leftSize) {
+    while(i < leftSize) {
         sorted.at(k) = left.at(i);
         k++;
         i++;
@@ -56,9 +56,9 @@ template <typename T> void merge(const vector<T>& unsorted, int start, int mid, 
 template <typename T> void mergeSort(const vector<T>& unsorted, int begin, int end, vector<T>& sorted) {
 
         if(begin < end) {
-            if(hit == 0) {
+            if(hit) {
                 sorted = unsorted;
-                hit++;
+                hit = true;
             }
 
             int mid = begin + (end-begin)/2;

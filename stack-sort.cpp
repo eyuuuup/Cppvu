@@ -3,31 +3,30 @@
 #include <fstream>
 using namespace std;
 
-void insertStack(stack<int>& s, int number) {
-    
-    if (!s.empty()) {
+void insertStack(stack<int>& stack, int original) {
 
-        int compare = s.top();
+    if (!stack.empty()) {
+        int compare = stack.top();
 
-        if(number > compare) {
-            s.pop();
-            insertStack(s, number);
-            s.push(compare);
+        if(original > compare) {
+            stack.pop();
+            insertStack(stack, original);
+            stack.push(compare);
         } else {
-            s.push(number);
+            stack.push(original);
         }
     } else {
-        s.push(number);
+        stack.push(original);
     }
 }
 
-void sortStack(stack<int>& s) {
+void sortStack(stack<int>& stack) {
     
-    if(!s.empty()) {
-        int number = s.top();
-        s.pop();
-        sortStack(s);
-        insertStack(s, number);
+    if(!stack.empty()) {
+        int original = stack.top();
+        stack.pop();
+        sortStack(stack);
+        insertStack(stack, original);
     }
     
 }
@@ -35,9 +34,9 @@ void sortStack(stack<int>& s) {
 int main(int argc, char* argv[]) {
 
     string fileName;
-    stack<int> s;
-    ifstream inFS;
-    int number;
+    stack<int> stack;
+    ifstream inputStream;
+    int original;
 
     if(argc < 2) {
         cout << "an error occured: no input file name given" << endl;
@@ -46,31 +45,31 @@ int main(int argc, char* argv[]) {
 
     fileName = argv[1];
 
-    inFS.open(fileName);
+    inputStream.open(fileName);
 
-    if(!inFS.is_open()) {
+    if(!inputStream.is_open()) {
         cout << "an error occured: could not open input file " << fileName << endl;
         return 1;
     }
 
-    while(!inFS.eof()) {
-        inFS >> number;
-        if (!inFS.fail()) {
-            s.push(number);
+    while(!inputStream.eof()) {
+        inputStream >> original;
+        if (!inputStream.fail()) {
+            stack.push(original);
         } else {
             break;
         }
     }
 
-    inFS.close();
+    inputStream.close();
 
-    if(s.size() > 2) {
-        sortStack(s);
+    if(stack.size() > 2) {
+        sortStack(stack);
     }
 
-    while(!s.empty()) {
-        cout << s.top() << " ";
-        s.pop();
+    while(!stack.empty()) {
+        cout << stack.top() << " ";
+        stack.pop();
     }
     cout << endl;
 

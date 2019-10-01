@@ -35,29 +35,29 @@ int findNumber(vector<int> elements) {
 int main() {
 
     try { 
-    cout << "Enter the numbers in random order: (close by entering q)" << endl;
+        cout << "Enter the numbers in random order: (close by entering q)" << endl;
 
-    vector<int> elements;
+        vector<int> elements;
 
-    bool con = true;
-    while(con) {
+        bool con = true;
+        while(con) {
 
-        int number;
-        cin >> number;
+            int number;
+            cin >> number;
 
-        if (cin.fail()) {
-            break;
-            con = false;
-        } else {
-            elements.push_back(number);
+            if (cin.fail()) {
+                break;
+                con = false;
+            } else {
+                elements.push_back(number);
+            }
         }
-    }
 
-    int result = findNumber(elements);
+        int result = findNumber(elements);
 
-    cout << "The second smallest number is: " << result;
+        cout << "The second smallest number is: " << result;
 
-    return 0;
+        return 0;
 
     } catch (runtime_error excpt) {
         cout << excpt.what() << endl;
