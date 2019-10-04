@@ -8,12 +8,12 @@ void insertStack(stack<int>& stack, int original) {
     if (!stack.empty()) {
         int compare = stack.top();
 
-        if(original > compare) {
+        if(original < compare) {
+            stack.push(original);
+        } else {
             stack.pop();
             insertStack(stack, original);
             stack.push(compare);
-        } else {
-            stack.push(original);
         }
     } else {
         stack.push(original);
