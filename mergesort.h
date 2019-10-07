@@ -5,13 +5,13 @@ using namespace std;
 #ifndef MERGESORT_H
 #define MERGESORT_H
 
-bool hit = true;
+bool copyArray = true;
 
 template <typename T> void merge(const vector<T>& unsorted, int start, int mid, int end, vector<T>& sorted)  {
 
-    int i = 0;
-    int j = 0;
-    int k = start;
+    int leftPointer = 0;
+    int rightPointer = 0;
+    int sortedPointer = start;
     int leftSize = mid - start + 1;
     int rightSize = end - mid;
 
@@ -27,27 +27,27 @@ template <typename T> void merge(const vector<T>& unsorted, int start, int mid, 
         right.at(j) = sorted.at(mid + 1 + j); 
     }
 
-    while(i < leftSize && j < rightSize) {
-        if(left.at(i) <= right.at(j)) {
-            sorted.at(k) = left.at(i);
-            i++;
+    while(leftPointer < leftSize && rightPointer < rightSize) {
+        if(left.at(leftPointer) <= right.at(rightPointer)) {
+            sorted.at(sortedPointer) = left.at(i);
+            leftPointer++;
         } else {
-            sorted.at(k) = right.at(j);
-            j++;
+            sorted.at(sortedPointer) = right.at(rightPointer);
+            rightPointer++;
         }
-         k++;
+         sortedPointer++;
     }
 
-    while(i < leftSize) {
-        sorted.at(k) = left.at(i);
-        k++;
-        i++;
+    while(leftPointer < leftSize) {
+        sorted.at(sortedPointer) = left.at(leftPointer);
+        sortedPointer++;
+        leftPointer++;
     }
     
-    while(j < rightSize) {
-        sorted.at(k) = right.at(j);
-        j++;
-        k++;
+    while(rightPointer < rightSize) {
+        sorted.at(sortedPointer) = right.at(rightPointer);
+        rightPointer++;
+        sortedPointer++;
     }
 }
 
@@ -55,7 +55,7 @@ template <typename T> void mergeSort(const vector<T>& unsorted, int begin, int e
 
         if(begin < end) {
        
-            if(hit) {
+            if(copyArray) {
                 sorted = unsorted;
                 hit = false;
             }
