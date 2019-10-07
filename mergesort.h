@@ -5,10 +5,10 @@ using namespace std;
 #ifndef MERGESORT_H
 #define MERGESORT_H
 
-bool hit = false;
+bool hit = true;
 
 template <typename T> void merge(const vector<T>& unsorted, int start, int mid, int end, vector<T>& sorted)  {
-    //cout <<"hit" << endl;
+
     int i = 0;
     int j = 0;
     int k = start;
@@ -43,29 +43,24 @@ template <typename T> void merge(const vector<T>& unsorted, int start, int mid, 
         k++;
         i++;
     }
+    
     while(j < rightSize) {
         sorted.at(k) = right.at(j);
         j++;
         k++;
     }
-
-
-
 }
 
 template <typename T> void mergeSort(const vector<T>& unsorted, int begin, int end, vector<T>& sorted) {
 
         if(begin < end) {
+       
             if(hit) {
                 sorted = unsorted;
-                hit = true;
+                hit = false;
             }
 
             int mid = begin + (end-begin)/2;
-            // cout << unsorted.size() << ":::";
-            // cout << endl;
-            // cout << mid << "Mid";
-            // cout << endl;
                 
             mergeSort(unsorted, begin, mid, sorted); 
             mergeSort(unsorted, mid + 1, end, sorted); 
@@ -73,7 +68,5 @@ template <typename T> void mergeSort(const vector<T>& unsorted, int begin, int e
     }
     
 } 
-
-
 
 #endif
