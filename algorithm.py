@@ -12,10 +12,21 @@ def process(creditCard):
 
 
     """
+
+    singleIINNumbers = ['4', '5', '6']
+    doubleIINNumbers = ["37"]
+
     if not(creditCard.isdigit()):
         return False
 
     stringArray = [x for x in creditCard]
+
+    if not(stringArray[0] == singleIINNumbers[0] or stringArray[0] == singleIINNumbers[1] or stringArray == singleIINNumbers[2]):
+        if(stringArray[0] == doubleIINNumbers[0][0]):
+            if not(stringArray[1] == doubleIINNumbers[0][1]):
+                return False
+        
+
     if (len(stringArray) < 13 or len(stringArray) > 16) :
         return False
     else :

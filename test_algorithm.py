@@ -68,12 +68,12 @@ class TestAlgorithm(unittest.TestCase):
         self.assertEqual(result, False)
 
     def test_americanValid1(self):
-        creditCard = "348061663201062"
+        creditCard = "370846443993249"
         result = algorithm.process(creditCard)
         self.assertEqual(result, True)
     
     def test_americanValid2(self):
-        creditCard = "347891882996246"
+        creditCard = "375039821712150"
         result = algorithm.process(creditCard)
         self.assertEqual(result, True)
 
